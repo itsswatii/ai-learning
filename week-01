@@ -1,0 +1,334 @@
+Week 1: Foundations of AI — How Machines Learn and Communicate
+
+📋 Overview
+Week 1 lays the groundwork for understanding AI from first principles. Rather than jumping straight into tools and tricks, this week covers what AI actually is, how it evolved, and how to communicate with it effectively — spanning the history of neural networks all the way to hands-on prompt engineering techniques used by practitioners today.
+TopicFocusIntelligent Machines: How AI Learns & SpeaksTheory — history, architecture, LLMsCrafting Commands: Foundations of Prompt EngineeringPractice — prompting techniques and frameworks
+
+1) Intelligent Machines: How AI Learns & Speaks
+A Century of Predictions
+In 1925, a British engineer named Archibald Low wrote a book predicting what life would look like in 2025. He imagined wall-mounted televisions, climate-controlled rooms, and instantaneous access to global information. Nearly everything he predicted came true.
+What he got wrong? He thought every man in 2025 would be bald from wearing hats too often.
+The point isn't that he was a prophet — it's that transformative technology often arrives sooner than sceptics expect and differently than optimists imagine. AI is no different.
+
+A Timeline of AI Milestones
+AI didn't emerge overnight. It was built across decades of incremental breakthroughs:
+YearMilestoneWhy It Mattered1943McCulloch & Pitts neural modelFirst attempt to mathematically model a neuron1950Turing Test proposedSet the benchmark: can a machine think?1955Logic TheoristFirst AI program — proved machines could reason logically1956Term "AI" coined by John McCarthyEstablished AI as a formal field of study1958Perceptrons introducedShowed machines could learn from data, not just rules1965ELIZA chatbotEarly NLP — humans were fooled into thinking it was human1997Deep Blue defeats KasparovAI beat the world chess champion2011IBM Watson wins JeopardyAI could handle unstructured, ambiguous language2017"Attention Is All You Need" paperTransformer architecture — the backbone of modern LLMs2022ChatGPT launchedGenerative AI went mainstream
+There were also AI winters — periods in the 1970s–80s when funding dried up and progress stalled, mostly because hardware wasn't powerful enough and data wasn't plentiful enough. The lesson: good ideas still need the right infrastructure to flourish.
+
+What Is Artificial Intelligence?
+At its core, AI is the simulation of human intelligence in machines — building systems that can learn from experience, reason about problems, and adapt to new situations.
+A useful analogy: imagine you've been asked to learn and explain a topic you've never studied before — say, aerospace engineering. You'd read books, search for articles, synthesize notes, and then explain the concept in your own words. You wouldn't copy-paste; you'd genuinely generate an understanding. That's what AI aims to replicate.
+
+Traditional AI vs. Generative AI
+This distinction is critical to understand, especially for career positioning.
+Traditional AI (pre-2022 mainstream)
+
+Task-specific: one model per problem (spam detection, churn prediction, fraud detection)
+Required labeled data and programming skills (Python, R)
+Output: predictions and classifications — it analyzed data but didn't create anything new
+Example: A model trained to predict whether a bank transaction is fraudulent, based on historical patterns
+
+Generative AI (post-2022 mainstream)
+
+Multi-purpose: a single model can translate, summarize, write code, draft emails, and more
+Accessible through natural language — no coding required for most tasks
+Output: new, original content — text, images, code, audio, video
+Example: Asking ChatGPT to draft a business proposal, then asking it to summarize the same document, then translate it — all in one session
+
+The shift from Traditional to Generative AI is what made prompt engineering the new power skill. You no longer need to code a model; you need to know how to communicate with one.
+
+How the Brain Inspired Neural Networks
+The human brain has roughly 100 billion neurons. Each neuron receives signals through its dendrites, processes them in its nucleus, and sends output down its axon to the next neuron. Connections strengthen or weaken based on experience — that's how learning happens.
+Artificial Neural Networks (ANNs) mirror this structure:
+
+Input layer — receives raw data (pixels, words, numbers)
+Hidden layers — transform the data through weighted calculations
+Output layer — produces a result (a classification, a word, a prediction)
+
+The more hidden layers a network has, the "deeper" it is — hence the term Deep Learning. Deep networks can model complex, non-linear patterns in data that shallow networks miss.
+
+Key stat: GPT-3, the model behind early ChatGPT, has 175 billion parameters (the adjustable weights across connections). That exceeds the estimated 100 billion neurons in a human brain — though the comparison isn't perfectly apples-to-apples.
+
+Real-world example — Tesla Autopilot:
+Camera input → Deep neural network → Identifies lanes, pedestrians, traffic signs → Calculates steering, braking, acceleration decisions — all within milliseconds.
+
+How AI Learns: Three Training Paradigms
+Understanding how models are trained helps you use them more intelligently.
+1. Supervised Learning
+The model is trained on labeled examples — input paired with the correct answer. Like a student studying with an answer key.
+
+Use case: Spam filters, sentiment analysis, medical image diagnosis
+Challenge: Expensive and slow — requires humans to label thousands or millions of examples
+
+2. Unsupervised Learning
+The model finds patterns in unlabeled data without being told what to look for.
+
+Use case: Customer segmentation (grouping shoppers by behaviour, without pre-defined categories), anomaly detection
+Think: Sorting a mixed bag of items by similarity without knowing their names first
+
+3. Self-Supervised Learning
+The model generates its own labels from raw data. This is how LLMs are pre-trained.
+
+Use case: The model reads the internet and learns to predict the next word in every sentence. The surrounding text is the label.
+Why it matters: It allows training on virtually unlimited data without human annotation — enabling the scale that makes models like GPT possible.
+
+
+Generative Models — How AI Creates
+The question many people ask: is AI just copy-pasting from its training data? The answer is no.
+Generative models learn the underlying patterns of data, not specific examples. Once trained, they can produce entirely new outputs that fit those patterns.
+Analogy: Show a child hundreds of photos of animals. After a while, ask the child to draw an animal they've never seen. They'll draw something plausible — four legs, fur, eyes — because they've internalized the rules, not the images.
+AI does the same. An image generator that's never seen "an astronaut riding a horse on the moon" can generate that image because it separately learned what astronauts look like, what horses look like, and what the moon looks like.
+Two key generative architectures before Transformers:
+GANs (Generative Adversarial Networks)
+Two neural networks in competition:
+
+The Generator produces fake samples (images, audio, etc.)
+The Discriminator tries to tell the fake from the real
+They train together — each improves by trying to outsmart the other
+Result: Increasingly photorealistic outputs
+Famous example: thispersondoesnotexist.com — every face is AI-generated from scratch
+
+VAEs (Variational Autoencoders)
+
+The Encoder compresses an input (e.g. an image) into a compact representation
+The Decoder reconstructs the image from that compressed form
+Key use: Image compression — reducing a 2MB photo to 80KB without visibly degrading quality
+Also used in anomaly detection and drug discovery
+
+
+Transformers — The Architecture Behind Modern AI
+The 2017 Google paper "Attention Is All You Need" changed everything. It introduced the Transformer architecture, which underpins virtually every major LLM today: ChatGPT, Claude, Gemini, Llama, and more.
+What made Transformers different:
+
+Older models (RNNs) processed text sequentially — one word at a time, left to right
+Transformers process the entire input simultaneously, making them dramatically faster and better at capturing long-range relationships
+
+How a Transformer processes a sentence:
+
+Tokenization — Text is split into tokens (words or sub-words), each mapped to a number. "Attention is powerful" might become [7823, 318, 4007] — this is what the model actually sees.
+Embeddings — Each token number is converted to a vector (a list of hundreds of floating-point values) that encodes meaning. Similar words have similar vectors — "cat" and "kitten" are closer together than "cat" and "spreadsheet".
+Positional Encoding — Since order matters in language, a positional signal is added to each embedding so the model knows "this word came third in the sentence."
+Encoder (attention + feed-forward) — The self-attention mechanism lets each word "look at" every other word to understand context. In "The trophy didn't fit in the suitcase because it was too big," attention helps the model figure out that "it" refers to the trophy, not the suitcase.
+Decoder — Generates the output one token at a time, using the encoded context. Each predicted token feeds back into the next prediction — that's why responses appear word-by-word.
+
+
+Understanding LLMs
+LLMs (Large Language Models) are a specific category within Generative AI — focused on text understanding and generation.
+At their core, LLMs do one thing: predict the next most likely token given everything that came before. This sounds simple, but when done at scale across billions of parameters trained on virtually the entire internet, it produces something that can explain quantum physics, write Python scripts, and debate philosophy.
+Types of LLMs:
+TypeDescriptionExampleGeneric/Base ModelPre-trained on raw text; can't be chatted with directlyGPT-2, early BERTInstruction-TunedFine-tuned to follow specific instructionsLlama-3-InstructDialogue-TunedFine-tuned for natural conversationChatGPT, Claude, Gemini
+Why don't LLMs always give the same answer?
+By design. LLMs sample from a probability distribution rather than always choosing the single most likely word. This is controlled by a temperature setting — lower temperature makes responses more deterministic and factual; higher temperature makes them more creative and varied.
+
+Limitations to Know
+LimitationWhat It MeansImplicationHallucinationsConfidently stating false informationAlways verify critical facts from LLM outputKnowledge CutoffOnly knows events before training data was collectedUse web-search-enabled modes for recent eventsMath & Logic GapsUnreliable at complex arithmeticDelegate calculations to code execution toolsInherited BiasReflects biases in training dataEvaluate outputs critically, especially for sensitive topics
+
+2) Crafting Commands: Foundations of Prompt Engineering
+Why LLMs Are Harder to Use Than They Look
+A study compared two groups of doctors: one group used an AI diagnostic tool, the other didn't. The result? Both performed similarly — the AI group showed only a marginal improvement.
+The reason wasn't that AI was unhelpful. It's that doctors didn't know how to use it well. When the AI gave one wrong answer, they discounted all its other answers too. And they treated it like a search engine — asking factual questions — rather than as a reasoning partner.
+This captures a broader challenge:
+
+Shallow interactions: Poorly formed prompts produce mediocre results, which leads people to dismiss the tool entirely
+Mismatched expectations: People expect a calculator and get a collaborator
+Steep learning curve: The interface looks simple (a text box), which paradoxically makes it harder — there's no obvious structure to follow
+
+The insight: AI has vast knowledge but no inherent thinking approach. Humans have a thinking approach but limited knowledge. Prompting is what bridges the two.
+
+What Is a Prompt?
+A prompt is any instruction, command, or query you give to an AI system. But more precisely, a good prompt is a structured communication that tells the AI:
+
+What to do (the task)
+For whom (the audience)
+In what format (structure and length)
+With what constraints (what to avoid)
+With what context (background information)
+
+The upgrade from bad to good:
+❌ Vague: "Write something about climate change."
+✅ Structured: "You are an environmental journalist writing for a general audience. Write a 200-word summary of the key causes of climate change, using everyday language and one concrete analogy. Avoid jargon. End with a single actionable suggestion for readers."
+The second prompt doesn't just get a better response — it gets a predictable, reusable response.
+
+Three Pillars of Optimal Prompting
+1. Understand Your Problem Statement
+Before writing a prompt, define: What does a successful output look like? What constraints matter? What would make the output useless?
+2. Choose the Right Model
+Model TypeBest ForExamplesChat ModelsConversation, drafting, simple tasksGemini Flash, early GPT versionsReasoning ModelsComplex decisions, multi-step logic, constraint-heavy tasksGPT-4o, Claude 3.5 Sonnet, Gemini 2.5 Pro, DeepSeek R1
+For example: if you ask a chat model "Help me start a business with $500 in 30 days, from home, legally registered", it might suggest ideas that violate the constraints. A reasoning model will actually check each idea against your constraints before suggesting it.
+Benchmarks like MMLU (Massive Multitask Language Understanding) are used industry-wide to compare model performance. Resources like artificialanalysis.ai make these comparisons accessible.
+3. Use the Right Prompting Technique
+Covered in detail below.
+
+Prompting Techniques
+1. System-Level / Structural Prompting
+Define a comprehensive role, ruleset, and objectives upfront. Think of it as giving the AI a job description before assigning the first task.
+Use case: Building a specialized AI assistant — a customer service agent, a code reviewer, a content moderator.
+<system>
+You are a financial wellness coach for first-time earners aged 22–28.
+Always follow these rules:
+- Use plain language, no financial jargon
+- Never give specific investment advice; recommend consulting a professional
+- Keep responses under 150 words unless asked for detail
+- Always end with one practical action the user can take today
+</system>
+<task>
+The user has just received their first salary. Help them think about how to allocate it.
+</task>
+
+2. Markdown Prompting
+Structure your prompt with Markdown headings to dictate the structure of the output. The AI mirrors the hierarchy you provide.
+Use case: Reports, research briefs, reusable templates.
+markdownAct as a product manager writing a PRD (Product Requirements Document).
+
+## Problem Statement
+## Target Users
+## Proposed Solution
+## Success Metrics
+## Out of Scope
+
+Use bullet points under each heading. Be concise.
+Product: A mobile app that helps remote workers track their focus time.
+Pro tip: Use placeholders like [Company Name] or [Product Type] to turn prompts into reusable templates.
+
+3. Role-Based Prompting
+Assign a persona before the task. This focuses the model's knowledge and calibrates its tone.
+Without role: Response is generic, encyclopaedic, covering every angle
+With role: Response is focused, practical, and contextually appropriate
+You are a UX researcher at a fintech startup who just completed 20 user interviews.
+Summarise the key friction points users experience during onboarding to a savings app.
+Structure your summary as: Top 3 issues → User quotes (2 per issue) → Recommended fixes.
+
+4. Style Prompting
+Specify the tone, genre, or voice explicitly. Especially important for content creation, brand communications, and scripts.
+Parameters to define:
+
+Tone: formal, casual, urgent, empathetic, sarcastic, motivational
+Audience: technical, general, executive, Gen Z, academic
+Format: bullet points, short paragraphs, script, tweet-style
+
+Write a LinkedIn post about the value of asking better questions.
+Tone: conversational but insightful
+Voice: a thoughtful practitioner, not a self-help guru
+Length: 120 words max
+End with a question that invites comments.
+
+5. Rephrase & Respond Prompting
+Ask the AI to restate or reframe your question before answering it. This improves clarity and catches ambiguity before it contaminates the response.
+Variations:
+
+"Rephrase and expand this question, then respond."
+"Reframe with additional context and detail before answering."
+"Modify the original question for precision, then provide your answer."
+
+Use case: Turning a rough hypothesis into a research-quality statement, or making a blunt claim suitable for professional communication.
+
+6. Zero-Shot vs. Few-Shot Prompting
+Zero-Shot: Ask the model to complete a task with no examples. Relies entirely on the model's pre-trained knowledge.
+Classify the following customer review as Positive, Negative, or Mixed:
+"The product quality is excellent, but I've been waiting two weeks for a response from support."
+Few-Shot: Provide 2–4 examples of the desired input/output pattern before asking the model to handle a new case. The model learns the task in context from your examples.
+Examples:
+Input: "I lost my card and nobody is picking up." → Tone: Frustrated
+Input: "Just wanted to say the new app is so intuitive!" → Tone: Delighted
+Input: "When will my order arrive? I ordered 10 days ago." → Tone: ???
+When to use which:
+
+Zero-shot: Simple, well-defined tasks (translation, basic classification)
+Few-shot: Nuanced tasks where format or tone consistency matters
+
+
+7. Chain of Thought (CoT) Prompting
+Instruct the model to think step-by-step before giving its final answer. This dramatically improves accuracy on reasoning tasks.
+Trigger phrase: "Think through each step logically and explain your reasoning at each stage."
+Without CoT:
+
+Q: "A warehouse starts with 200 units. 50 are shipped Monday, 80 shipped Tuesday, 30 returned Wednesday. How many remain?"
+A: "60" ← possible arithmetic error
+
+With CoT:
+
+Step 1: 200 − 50 = 150 (after Monday)
+Step 2: 150 − 80 = 70 (after Tuesday)
+Step 3: 70 + 30 = 100 (after Wednesday return)
+Final Answer: 100
+
+CoT also reveals the model's reasoning, making it easier to spot where it goes wrong.
+
+8. Skeleton of Thought (SoT) Prompting
+A two-stage approach: generate the structure first, then fill in the details. Ensures comprehensive coverage before diving into depth.
+Help me write a guide on building a personal brand on LinkedIn.
+Step 1: List the 6–8 main sections as one-line headings (the skeleton).
+Step 2: For each heading, write 2–3 sentences elaborating the key advice.
+Why this works: It mirrors how good writers actually plan — outline first, then draft. It also lets you review and edit the structure before committing to full detail.
+
+9. Tabular Chain of Thought
+A CoT variant where the reasoning is structured as a table. Useful for comparisons, strategy, and trade-off analysis.
+Create a competitive analysis for a new productivity app.
+Use a table with these columns: 
+Competitor | Key Strengths | Key Weaknesses | Target Audience | Pricing | Gap We Can Fill
+Think through each competitor logically before filling the row.
+
+10. System 2 Attention Prompting
+Named after Daniel Kahneman's framework (System 1 = fast/intuitive, System 2 = slow/deliberate). Instructs the AI to reason carefully, weigh trade-offs, and only then make a recommendation.
+Act as a strategic advisor. A startup is choosing between 3 markets to enter first: 
+Southeast Asia, Western Europe, or East Africa.
+
+Before recommending anything, work through these steps:
+1. Identify 4–5 key market entry factors
+2. For each region, list pros and cons on those factors
+3. Explicitly reason through trade-offs
+4. Reflect on second-order effects (regulatory risk, talent pipeline, brand perception)
+Only after completing this analysis, provide a ranked recommendation with justification.
+
+11. Generated Knowledge Prompting
+Ask the model to generate relevant facts, perspectives, or background knowledge before tackling the main task. This grounds the response and reduces hallucination.
+Two-step pattern:
+Step 1: Generate 8–10 key facts about how electric vehicles are taxed and subsidised in different countries.
+
+Step 2: Using those facts, write a 300-word investor briefing on the regulatory landscape for an EV company considering European expansion.
+Why it works: By explicitly constructing a knowledge base first, the model has concrete facts to draw on rather than generating from vague memory.
+
+12. Self-Generated In-Context Learning
+What if you want to use few-shot prompting but don't have ready examples? Ask the model to generate the examples itself, then use them.
+Step 1: Generate 3 examples of concise, data-backed performance review comments — one for an employee who exceeded targets, one who met them, one who fell short.
+
+Step 2: For each example, note what made it effective (specific, evidence-based, actionable).
+
+Step 3: Using those self-generated examples as your style guide, write a performance review for [employee description].
+
+Quick Reference: When to Use Which Technique
+TechniqueBest ForKey SignalSystem-LevelBuilding specialized agents or assistants"I want consistent behaviour across many interactions"MarkdownReports, analyses, reusable documents"I need structured, hierarchical output"Role-BasedFocused, persona-appropriate responses"I need the AI to think like a specific expert"StyleBrand content, scripts, audience-specific writing"I need a specific tone or voice"Zero-ShotSimple, well-understood tasks"The task is straightforward"Few-ShotConsistent format, nuanced tone matching"I have examples of what good looks like"Chain of ThoughtReasoning, math, multi-step decisions"I need accuracy and transparent logic"Skeleton of ThoughtLong-form documents, plans, presentations"I want structure before depth"Tabular CoTComparisons, strategy grids"I need side-by-side reasoning"System 2 AttentionStrategic decisions, trade-off analysis"Don't just give me an answer — show your work"Generated KnowledgeResearch-grounded outputs"I need the AI to fact-base itself first"Self-Generated ICLFew-shot without prior examples"I want few-shot quality without having examples"
+
+💡 Key Takeaways from Week 1
+
+AI is not magic — it's pattern recognition at scale. Understanding how neural networks learn makes you a better user and a better communicator of AI's value and limits.
+The shift from Traditional to Generative AI is a shift in who can participate. You don't need to code a model. You need to know how to talk to one clearly and strategically.
+A prompt is a specification, not a question. The more context, structure, and constraints you provide, the more predictable and useful the output.
+Prompting is a skill, not a trick. Like writing or critical thinking, it improves with deliberate practice and reflection on what worked and why.
+Choose your model for the task. Reasoning models are worth the extra cost or latency for complex, multi-constraint problems. Chat models are fine for simple tasks.
+Techniques compound. A single prompt often combines Role + Style + CoT + Markdown. Think of them as modular tools, not exclusive categories.
+
+
+📚 Resources
+Conceptual / Foundational
+
+The Illustrated Transformer — Visual walkthrough of the Transformer architecture
+Transformer Explainer — Interactive animation
+OpenAI Tokenizer — See how text becomes tokens in real time
+
+Prompt Engineering
+
+Anthropic Prompting Guide
+Google Prompt Engineering Guide
+OpenAI Prompting Best Practices
+PromptingGuide.ai — Comprehensive reference (can be dense; use as a reference, not a textbook)
+Snack Prompts — Pre-built prompts for common use cases
+
+Model Benchmarks & Comparisons
+
+ArtificialAnalysis.ai — Compare LLM performance, speed, and cost
+
+
+🔗 Navigation
+Week 1 ← You are here
+Week 2 — Coming soon
