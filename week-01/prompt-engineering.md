@@ -405,7 +405,7 @@ flowchart TD
 - [Google Prompt Engineering Guide](https://cloud.google.com/discover/what-is-prompt-engineering)
 - [OpenAI Prompting Best Practices](https://platform.openai.com/docs/guides/prompt-engineering)
 - [PromptingGuide.ai](https://promptingguide.ai) — Comprehensive reference; best used as a lookup rather than read cover to cover
-- [Snack Prompts](https://snackprompts.com) — Pre-built prompts for common use cases
+- [Snack Prompts](https://snackprompt.com) — Pre-built prompts for common use cases
 
 ---
 
