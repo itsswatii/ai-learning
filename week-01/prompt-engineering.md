@@ -12,22 +12,11 @@ A study compared two groups of doctors: one group used an AI diagnostic tool, th
 
 The reason wasn't that AI was unhelpful. It's that the doctors didn't know how to use it effectively. When the AI gave one wrong answer, they discounted everything else. They also treated it like a search engine — asking factual questions — rather than as a reasoning partner.
 
-This captures a broader challenge most people face with AI:
+This reflects a broader challenge most people face with AI:
 
 - **Shallow interactions** — Poorly formed prompts produce mediocre results, leading people to dismiss the tool entirely
 - **Mismatched expectations** — People expect a calculator and get a collaborator
 - **Steep learning curve** — The interface looks simple (a text box), which paradoxically makes it harder — there is no obvious structure to follow
-
-```mermaid
-flowchart LR
-    H["Human\nStrong thinking approach\nLimited knowledge"]
-    AI["AI\nVast knowledge\nNo inherent thinking approach"]
-    P["Prompting\nBridges the gap"]
-
-    H -->|"Provides structure,\ncontext, and intent"| P
-    AI -->|"Provides knowledge,\npatterns, and generation"| P
-    P --> O["Useful, accurate,\nand relevant output"]
-```
 
 The core insight: **AI has vast knowledge but no inherent thinking approach. Humans have a thinking approach but limited knowledge. Prompting is what bridges the two.**
 
@@ -35,18 +24,15 @@ The core insight: **AI has vast knowledge but no inherent thinking approach. Hum
 
 ## What Is a Prompt?
 
-A prompt is any instruction, command, or query given to an AI system. But more precisely, a well-crafted prompt is a structured communication that tells the AI exactly what it needs to know.
+A prompt is any instruction, command, or query given to an AI system. A well-crafted prompt is a structured communication that includes:
 
-```mermaid
-flowchart TD
-    P["A Well-Crafted Prompt"]
-
-    P --> T["Task\nWhat to do"]
-    P --> A["Audience\nWho it is for"]
-    P --> F["Format\nHow to structure it"]
-    P --> C["Constraints\nWhat to avoid"]
-    P --> X["Context\nBackground information"]
-```
+| Component | Purpose |
+|---|---|
+| **Task** | What the AI should do |
+| **Audience** | Who the output is for |
+| **Format** | How to structure the response |
+| **Constraints** | What to avoid |
+| **Context** | Background information needed |
 
 **The difference in practice:**
 
@@ -69,15 +55,6 @@ The second prompt doesn't just get a better response — it gets a *predictable,
 
 ## Three Pillars of Optimal Prompting
 
-```mermaid
-flowchart LR
-    O["Optimal\nPrompting"]
-
-    O --> P1["1. Understand\nYour Problem\nDefine the goal clearly\nbefore you type"]
-    O --> P2["2. Choose\nthe Right Model\nChat vs Reasoning\nbased on task complexity"]
-    O --> P3["3. Use the Right\nTechnique\nMatch the method\nto the output needed"]
-```
-
 **1. Understand Your Problem Statement**
 Before writing a prompt, define what a successful output looks like. What constraints matter? What would make the output useless? Clarity before you type saves multiple rounds of iteration.
 
@@ -85,10 +62,10 @@ Before writing a prompt, define what a successful output looks like. What constr
 
 | Model Type | Best For | Examples |
 |---|---|---|
-| Chat Models | Conversation, drafting, simple tasks | Gemini Flash, early GPT versions |
-| Reasoning Models | Complex decisions, multi-step logic, constraint-heavy tasks | GPT-4o, Claude 3.5 Sonnet, Gemini 2.5 Pro, DeepSeek R1 |
+| **Chat Models** | Conversation, drafting, simple tasks | Gemini Flash, early GPT versions |
+| **Reasoning Models** | Complex decisions, multi-step logic, constraint-heavy tasks | GPT-4o, Claude 3.5 Sonnet, Gemini 2.5 Pro, DeepSeek R1 |
 
-For example: ask a chat model to suggest a home-based business with a $500 budget, legally registered and profitable within 30 days — and it may quietly violate your constraints. A reasoning model will evaluate each idea against every constraint before recommending it.
+For example: ask a chat model to suggest a home-based business with a $500 budget, legally registered and profitable within 30 days — and it may quietly violate your constraints. A reasoning model evaluates each idea against every constraint before recommending it.
 
 **3. Use the Right Technique**
 Covered in detail in the sections below.
@@ -158,10 +135,11 @@ Structure your summary as:
 
 Specify the tone, genre, or voice explicitly. Critical for brand communications, content creation, and any output where how something is said matters as much as what is said.
 
-Parameters to define:
-- **Tone:** formal, casual, urgent, empathetic, sarcastic, motivational
-- **Audience:** technical, general, executive, academic
-- **Format:** bullet points, short paragraphs, script, social post
+| Parameter | Options |
+|---|---|
+| **Tone** | Formal, casual, urgent, empathetic, motivational |
+| **Audience** | Technical, general, executive, academic |
+| **Format** | Short paragraphs, bullet points, script, social post |
 
 ```
 Write a LinkedIn post about the value of asking better questions.
@@ -188,31 +166,20 @@ Best used when turning a rough hypothesis into a research-quality statement, or 
 
 ### 6. Zero-Shot vs. Few-Shot Prompting
 
-```mermaid
-flowchart LR
-    subgraph ZS["Zero-Shot"]
-        ZI["Input:\nClassify this review as\nPositive, Negative, or Mixed"]
-        ZO["Output:\nModel uses only\npre-trained knowledge\nFormat may vary"]
-        ZI --> ZO
-    end
+| | Zero-Shot | Few-Shot |
+|---|---|---|
+| **How it works** | No examples provided — model relies on pre-trained knowledge | 2–4 examples provided before the actual task |
+| **Output consistency** | Variable — format and tone may differ | Consistent — model mirrors the examples |
+| **Best for** | Simple, well-defined tasks | Nuanced tone matching or specific output formats |
+| **Example use** | Basic classification, direct translation | Customer support tone, structured data extraction |
 
-    subgraph FS["Few-Shot"]
-        FI["Input:\nExamples provided first\nInput 1 → Output 1\nInput 2 → Output 2\nNew input → ???"]
-        FO["Output:\nModel learns the\npattern from examples\nFormat is consistent"]
-        FI --> FO
-    end
-
-    ZS -->|"More examples\nand structure needed"| FS
 ```
+Few-Shot Example:
 
-**Zero-Shot** — Ask the model to complete a task with no examples. Best for simple, well-defined tasks where the model has strong prior knowledge.
-
-**Few-Shot** — Provide two to four examples of the desired input/output pattern before the actual task. The model learns the format and tone from your examples within the prompt itself.
-
-| Use When | Choose |
-|---|---|
-| Task is simple and well-defined | Zero-Shot |
-| Format consistency or nuanced tone matching matters | Few-Shot |
+Input: "I lost my card and nobody is picking up."  → Tone: Frustrated
+Input: "Just wanted to say the new app is so intuitive!" → Tone: Delighted
+Input: "When will my order arrive? I ordered 10 days ago." → Tone: ???
+```
 
 ---
 
@@ -223,24 +190,21 @@ Instruct the model to think step-by-step before delivering its final answer. Thi
 Trigger phrase: *"Think through each step logically and explain your reasoning at each stage."*
 
 ```mermaid
-flowchart TD
-    Q["Question:\nA warehouse starts with 200 units.\n50 shipped Monday, 80 shipped Tuesday,\n30 returned Wednesday. How many remain?"]
+flowchart TB
+    Q([Same Question]) --> W & C
 
-    subgraph Without["Without CoT"]
-        WA["Direct answer:\n60\nPossible arithmetic error"]
+    subgraph W[Without CoT]
+        direction LR
+        W1[Direct Answer] --> W2[60 — Incorrect]
     end
 
-    subgraph With["With CoT"]
-        S1["Step 1: 200 - 50 = 150\nAfter Monday"]
-        S2["Step 2: 150 - 80 = 70\nAfter Tuesday"]
-        S3["Step 3: 70 + 30 = 100\nAfter Wednesday return"]
-        AN["Final Answer: 100"]
-        S1 --> S2 --> S3 --> AN
+    subgraph C[With CoT]
+        direction LR
+        C1[200 - 50 = 150] --> C2[150 - 80 = 70] --> C3[70 + 30 = 100] --> C4[100 — Correct]
     end
-
-    Q --> Without
-    Q --> With
 ```
+
+CoT also makes the model's reasoning visible — making it easier to identify exactly where logic breaks down.
 
 ---
 
@@ -250,11 +214,23 @@ A two-stage approach: generate the outline first, then fill in the detail. Ensur
 
 ```mermaid
 flowchart LR
-    T["Task:\nWrite a guide on building\na personal brand on LinkedIn"]
-    --> S["Stage 1: Skeleton\nList 6-8 section headings\nas one-line bullets"]
-    --> R["Review and adjust\nthe structure if needed"]
-    --> E["Stage 2: Expand\nWrite 2-3 sentences\nfor each heading"]
-    --> O["Output:\nWell-structured, coherent\nlong-form guide"]
+    T([Task]) --> S1 --> S2 --> O([Final Output])
+
+    subgraph S1[Stage 1 — Skeleton]
+        direction TB
+        A1[List main section headings] --> A2[Review and adjust structure]
+    end
+
+    subgraph S2[Stage 2 — Expand]
+        direction TB
+        B1[Elaborate each section] --> B2[Coherent full output]
+    end
+```
+
+```
+Help me write a guide on building a personal brand on LinkedIn.
+Step 1: List the 6–8 main sections as one-line headings (the skeleton).
+Step 2: For each heading, write 2–3 sentences elaborating the key advice.
 ```
 
 This mirrors how experienced writers plan — structure first, then content. It also lets you review and adjust the outline before any detailed generation happens.
@@ -300,21 +276,28 @@ Ask the model to generate relevant background knowledge *before* tackling the ma
 
 ```mermaid
 flowchart LR
-    T["Main Task:\nWrite an investor briefing on\nEV regulatory landscape in Europe"]
+    T([Task]) --> K1 --> K2 --> U1 --> U2 --> O([Grounded Output])
 
-    subgraph Without["Without Generated Knowledge"]
-        WO["Model draws from\nvague pattern memory\nHigher hallucination risk"]
+    subgraph P1[Phase 1 — Generate]
+        K1[Identify relevant facts]
+        K2[Build background context]
     end
 
-    subgraph With["With Generated Knowledge"]
-        GK["Step 1: Generate\n8-10 key facts about\nEV tax and subsidy policies"]
-        MT["Step 2: Use those facts\nto write the briefing\nGrounded in explicit context"]
-        GK --> MT
+    subgraph P2[Phase 2 — Apply]
+        U1[Ground task in facts]
+        U2[Produce accurate response]
     end
-
-    T --> Without
-    T --> With
 ```
+
+```
+Step 1: Generate 8–10 key facts about how electric vehicles are taxed
+and subsidised across different countries.
+
+Step 2: Using those facts, write a 300-word investor briefing on the
+regulatory landscape for an EV company considering European expansion.
+```
+
+By explicitly constructing a knowledge base first, the model has concrete facts to reference rather than generating from vague pattern memory.
 
 ---
 
@@ -339,49 +322,56 @@ review for [employee description].
 ## Quick Reference: When to Use Which Technique
 
 ```mermaid
-flowchart TD
-    Start["What does your task require?"]
+flowchart LR
+    S([Choose a Technique]) --> Q1 & Q2 & Q3 & Q4 & Q5
 
-    Start --> Q1{"Consistent behaviour\nacross many interactions?"}
-    Q1 -->|"Yes"| SYS["System-Level Prompting"]
-    Q1 -->|"No"| Q2{"Structured, hierarchical\noutput like a report?"}
+    subgraph Q1[Simple Tasks]
+        direction TB
+        ZS[Zero-Shot]
+    end
 
-    Q2 -->|"Yes"| MD["Markdown Prompting"]
-    Q2 -->|"No"| Q3{"Does the AI need\na specific persona?"}
+    subgraph Q2[Structure and Format]
+        direction TB
+        MD[Markdown]
+        FS[Few-Shot]
+        TC[Tabular CoT]
+    end
 
-    Q3 -->|"Yes"| RB["Role-Based Prompting"]
-    Q3 -->|"No"| Q4{"Does tone or\nvoice matter?"}
+    subgraph Q3[Persona and Tone]
+        direction TB
+        RB[Role-Based]
+        ST[Style]
+        SL[System-Level]
+    end
 
-    Q4 -->|"Yes"| ST["Style Prompting"]
-    Q4 -->|"No"| Q5{"Do you have\nexamples of good output?"}
+    subgraph Q4[Reasoning and Planning]
+        direction TB
+        CT[Chain of Thought]
+        SK[Skeleton of Thought]
+        S2[System 2 Attention]
+    end
 
-    Q5 -->|"Yes"| FS["Few-Shot Prompting"]
-    Q5 -->|"No"| Q6{"Is it a reasoning\nor multi-step task?"}
-
-    Q6 -->|"Yes"| COT["Chain of Thought"]
-    Q6 -->|"No"| Q7{"Need side-by-side\ncomparison or strategy?"}
-
-    Q7 -->|"Yes"| TAB["Tabular CoT"]
-    Q7 -->|"No"| Q8{"Need balanced\ndecision analysis?"}
-
-    Q8 -->|"Yes"| S2["System 2 Attention"]
-    Q8 -->|"No"| ZS["Zero-Shot Prompting"]
+    subgraph Q5[Knowledge Grounding]
+        direction TB
+        GK[Generated Knowledge]
+        SG[Self-Generated ICL]
+    end
 ```
 
-| Technique | Best For | Key Signal |
+| Technique | Best For | Use When |
 |---|---|---|
-| System-Level | Specialized assistants with consistent behaviour | "I want the same rules applied across all interactions" |
-| Markdown | Reports, analyses, reusable templates | "I need structured, hierarchical output" |
-| Role-Based | Focused, persona-appropriate responses | "I need the AI to think like a specific expert" |
-| Style | Brand content, scripts, audience-specific writing | "The tone and voice matter as much as the content" |
-| Zero-Shot | Simple, well-understood tasks | "The task is straightforward" |
-| Few-Shot | Consistent format, nuanced tone matching | "I have examples of what good looks like" |
-| Chain of Thought | Reasoning, math, multi-step decisions | "I need accuracy and transparent logic" |
-| Skeleton of Thought | Long-form documents, plans, presentations | "I want structure before depth" |
-| Tabular CoT | Comparisons, strategy grids | "I need side-by-side reasoning" |
-| System 2 Attention | Strategic decisions, trade-off analysis | "Show your reasoning before giving an answer" |
-| Generated Knowledge | Research-grounded outputs | "I need the response anchored in facts" |
-| Self-Generated ICL | Few-shot without prior examples | "I want few-shot quality but have no examples ready" |
+| **System-Level** | Specialized assistants with consistent behaviour | You want the same rules applied across all interactions |
+| **Markdown** | Reports, analyses, reusable templates | You need structured, hierarchical output |
+| **Role-Based** | Focused, persona-appropriate responses | You need the AI to think like a specific expert |
+| **Style** | Brand content, scripts, audience-specific writing | Tone and voice matter as much as the content |
+| **Zero-Shot** | Simple, well-understood tasks | The task is straightforward |
+| **Few-Shot** | Consistent format, nuanced tone matching | You have examples of what good looks like |
+| **Chain of Thought** | Reasoning, math, multi-step decisions | You need accuracy and transparent logic |
+| **Skeleton of Thought** | Long-form documents, plans, presentations | You want structure before depth |
+| **Tabular CoT** | Comparisons, strategy grids | You need side-by-side reasoning |
+| **System 2 Attention** | Strategic decisions, trade-off analysis | Show your reasoning before giving an answer |
+| **Generated Knowledge** | Research-grounded outputs | The response needs to be anchored in facts |
+| **Self-Generated ICL** | Few-shot without prior examples | You want few-shot quality but have no examples ready |
 
 ---
 
@@ -405,7 +395,7 @@ flowchart TD
 - [Google Prompt Engineering Guide](https://cloud.google.com/discover/what-is-prompt-engineering)
 - [OpenAI Prompting Best Practices](https://platform.openai.com/docs/guides/prompt-engineering)
 - [PromptingGuide.ai](https://promptingguide.ai) — Comprehensive reference; best used as a lookup rather than read cover to cover
-- [Snack Prompts](https://snackprompt.com) — Pre-built prompts for common use cases
+- [Snack Prompts](https://snackprompts.com) — Pre-built prompts for common use cases
 
 ---
 
